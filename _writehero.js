@@ -1,4 +1,6 @@
-"use client";
+const fs = require('fs');
+
+const code = `"use client";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import IntroSequence from "@/components/IntroSequence";
@@ -262,4 +264,7 @@ export default function Home() {
       </main>
     </div>
   );
-}
+}`;
+
+fs.writeFileSync('app/page.tsx', code);
+console.log('Done');

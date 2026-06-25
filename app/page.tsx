@@ -124,9 +124,13 @@ export default function Home() {
         <motion.div className="relative mt-12 flex-shrink-0 md:mt-0"
           initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}>
-          <div className="h-72 w-72 rounded-2xl md:h-96 md:w-80"
-            style={{ background: "linear-gradient(135deg, var(--color-bg-elevated) 0%, var(--color-accent-violet-dim) 100%)", border: "1px solid var(--color-border-glow)", boxShadow: "var(--glow-violet)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--color-text-faint)", fontSize: "0.75rem", letterSpacing: "0.1em" }}>
-            [ AVATAR ]
+          <div className="relative h-72 w-72 rounded-2xl md:h-96 md:w-80 overflow-hidden"
+            style={{ border: "1px solid var(--color-border-glow)", boxShadow: "var(--glow-violet)" }}>
+            <img
+              src="/avatar.png"
+              alt="Atimanas Baral"
+              className="h-full w-full object-cover object-top"
+            />
           </div>
           <div className="absolute -bottom-4 -left-4 rounded-xl px-4 py-3 text-xs"
             style={{ background: "var(--color-bg-elevated)", border: "1px solid var(--color-border)", color: "var(--color-text-muted)" }}>

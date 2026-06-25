@@ -1,0 +1,1 @@
+require('fs').writeFileSync('app/page.tsx', require('fs').readFileSync('_page.txt', 'utf8')))

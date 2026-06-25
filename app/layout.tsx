@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Anton, Inter } from "next/font/google";
 import "./globals.css";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const anton = Anton({
   weight: "400",
@@ -29,7 +30,12 @@ export default function RootLayout({
       lang="en"
       className={`${anton.variable} ${inter.variable} dark h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <div className="fixed top-4 right-4 z-50">
+          <ThemeToggle />
+        </div>
+        {children}
+      </body>
     </html>
   );
 }

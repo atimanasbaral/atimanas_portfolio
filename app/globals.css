@@ -35,6 +35,30 @@
   --glow-cyan:   0 0 24px rgba(0,212,255,0.4);
 }
 
+/* -- Light mode overrides (Manga Screentone) -- */
+.light {
+  --color-bg-primary:        #f4f0e6;
+  --color-bg-surface:        #e8e2d0;
+  --color-bg-elevated:       #ffffff;
+  --color-accent-violet:     #6d4aff;
+  --color-accent-violet-dim: #8a73e8;
+  --color-accent-cyan:       #0099bb;
+  --color-accent-cyan-dim:   #00d4ff;
+  --color-steel:             #8a8470;
+  --color-steel-light:       #b5af98;
+  --color-text-primary:      #111111;
+  --color-text-muted:        #5a5648;
+  --color-text-faint:        #8a8470;
+  --color-border:            #ddd5bd;
+  --color-border-glow:       rgba(109,74,255,0.25);
+}
+.light .glow-violet { box-shadow: 0 0 16px rgba(109,74,255,0.25); }
+.light .glow-cyan   { box-shadow: 0 0 16px rgba(0,153,187,0.2); }
+.light .text-glow-violet { text-shadow: 0 0 12px rgba(109,74,255,0.35); }
+.light .text-glow-cyan   { text-shadow: 0 0 12px rgba(0,153,187,0.3); }
+.light ::-webkit-scrollbar-track { background: var(--color-bg-primary); }
+.light ::-webkit-scrollbar-thumb { background: var(--color-steel); }
+
 @variant dark (&:where(.dark, .dark *));
 
 /* ── Base ── */

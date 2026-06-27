@@ -1,25 +1,34 @@
 import type { Metadata } from "next";
-import { Anton, Inter } from "next/font/google";
+import { Anton, Inter, Bebas_Neue } from "next/font/google";
+
 import "./globals.css";
-import ThemeToggle from "@/components/ThemeToggle";
+import AppShell from "@/components/layout/AppShell";
+import AppProviders from "@/components/providers/AppProviders";
+import { profile } from "@/lib/data/profile";
 
 const anton = Anton({
   weight: "400",
-  variable: "--font-anton",
   subsets: ["latin"],
+  variable: "--font-anton",
   display: "swap",
 });
 
 const inter = Inter({
-  variable: "--font-inter",
   subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const bebasNeue = Bebas_Neue({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-bebas",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Atimanas Baral — AI Engineer & Data Engineer",
-  description:
-    "Portfolio of Atimanas Baral — AI/ML Engineer, Data Engineer, Quant-curious builder. Transforming data into intelligent decisions.",
+  title: `${profile.name} — Data Engineer & Quant Analyst`,
+  description: profile.summary,
 };
 
 export default function RootLayout({
@@ -28,13 +37,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${anton.variable} ${inter.variable} dark h-full antialiased`}
+      className={`${anton.variable} ${inter.variable} ${bebasNeue.variable} dark h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col">
-        <div className="fixed top-4 right-4 z-50">
-          <ThemeToggle />
-        </div>
-        {children}
+      <body className="min-h-full flex flex-col bg-background text-foreground">
+        <AppProviders>
+          <AppShell>{children}</AppShell>
+        </AppProviders>
       </body>
     </html>
   );

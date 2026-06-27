@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120" role="img" aria-label="Atimanas Baral">
+  <defs>
+    <linearGradient id="avatarGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6d4aff"/>
+      <stop offset="100%" stop-color="#00d4ff"/>
+    </linearGradient>
+  </defs>
+  <circle cx="60" cy="60" r="60" fill="#11131c"/>
+  <circle cx="60" cy="60" r="52" fill="url(#avatarGradient)" opacity="0.35"/>
+  <text x="60" y="68" text-anchor="middle" fill="#E8EEFF" font-family="Arial, sans-serif" font-size="28" font-weight="700">AB</text>
+</svg>

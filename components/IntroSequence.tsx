@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 const SCENE_DURATIONS = [1200, 1400, 1400, 1400, 1000]; // ms per scene
@@ -13,22 +13,22 @@ export default function IntroSequence({
   const [scene, setScene] = useState(0);
   const [visible, setVisible] = useState(true);
 
+  const handleFinish = useCallback(() => {
+    localStorage.setItem("hasSeenIntro", "true");
+    setVisible(false);
+    setTimeout(onComplete, 500);
+  }, [onComplete]);
+
   useEffect(() => {
     if (scene >= SCENE_DURATIONS.length) {
-      handleFinish();
+      queueMicrotask(handleFinish);
       return;
     }
     const timer = setTimeout(() => {
       setScene((s) => s + 1);
     }, SCENE_DURATIONS[scene]);
     return () => clearTimeout(timer);
-  }, [scene]);
-
-  function handleFinish() {
-    localStorage.setItem("hasSeenIntro", "true");
-    setVisible(false);
-    setTimeout(onComplete, 500);
-  }
+  }, [handleFinish, scene]);
 
   if (!visible) return null;
 

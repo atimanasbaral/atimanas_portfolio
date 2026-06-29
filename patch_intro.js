@@ -1,4 +1,6 @@
-"use client";
+const fs = require("fs");
+
+const content = `"use client";
 
 import { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -162,3 +164,7 @@ export default function IntroSequence({ onComplete }: { onComplete: () => void }
     </div>
   );
 }
+`;
+
+fs.writeFileSync("D:/atimanas_portfolio/components/IntroSequence.tsx", content);
+console.log("IntroSequence updated with waterfall background");

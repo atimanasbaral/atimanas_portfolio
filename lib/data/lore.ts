@@ -51,11 +51,11 @@ export const loreChapters: LoreChapter[] = [
   },
   {
     id: "blackbuck",
-    year: "Sep 2025 – Mar 2026",
+    year: "Sep 2025 – Jun 2026",
     tag: "Ch.5 — The Arena",
     title: "Fraud Analyst at BlackBuck.",
     description:
-      "170+ calls per day, >95% labeling precision, 80+ high-risk accounts flagged weekly. Real fraud. Real stakes.",
+      "250+ calls per day, >95% labeling precision, 80+ high-risk accounts flagged weekly. Real fraud. Real stakes.",
     status: "COMPLETED",
     color: "#6d4aff",
   },
@@ -91,9 +91,9 @@ export const lorePreviewPanels = [
     tone: "from-zinc-100 to-slate-600",
   },
   {
-    year: "2026",
+    year: "2025–26",
     title: "The Arena",
-    text: "BlackBuck fraud ops. Then back to building full-time.",
+    text: "BlackBuck fraud ops. 250+ calls/day, 80+ flagged weekly.",
     tone: "from-slate-300 to-zinc-800",
   },
   {

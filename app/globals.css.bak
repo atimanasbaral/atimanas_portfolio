@@ -762,23 +762,3 @@ body {
 /* Card surfaces */
 .light .bg-bg-surface { background: linear-gradient(145deg, #ffffff, #fffcf5) !important; }
 .light .bg-bg-elevated { background: linear-gradient(145deg, #fffbf0, #fff3d6) !important; }
-
-/* ===== Flip card system ===== */
-.flip-card-perspective {
-  perspective: 1400px;
-  cursor: pointer;
-  outline: none;
-}
-.flip-card-perspective:focus-visible .flip-card-front {
-  box-shadow: 0 0 0 3px var(--color-accent-cyan);
-}
-.flip-card-inner {
-  will-change: transform;
-}
-.flip-card-face {
-  -webkit-backface-visibility: hidden;
-}
-.flip-card-back {
-  display: flex;
-  flex-direction: column;
-}

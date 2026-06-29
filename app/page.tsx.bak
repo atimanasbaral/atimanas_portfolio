@@ -9,7 +9,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 import IntroSequence from "@/components/IntroSequence";
 import CountUp from "@/components/effects/CountUp";
-import { FlipCard } from "@/components/effects/FlipCard";
 import { profile } from "@/lib/data/profile";
 import { lorePreviewPanels } from "@/lib/data/lore";
 import {
@@ -315,36 +314,19 @@ export default function Home() {
                 const Icon = panel.icon;
                 return (
                   <motion.div key={panel.title}
+                    className="ink-frame relative flex min-h-64 flex-col justify-end overflow-hidden"
                     initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.08 }}>
-                    <FlipCard
-                      className="min-h-64 h-full"
-                      front={
-                        <div className="ink-frame relative flex h-full min-h-64 flex-col justify-end overflow-hidden">
-                          <img src={`/manga/${panel.image}.png`} alt={panel.title} className="absolute inset-0 h-full w-full object-cover" />
-                          <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.55) 38%, transparent 62%)" }} />
-                          <div className="absolute right-2 top-2 flex h-7 w-7 items-center justify-center rounded-full border"
-                            style={{ borderColor: "rgba(255,255,255,0.7)", background: "rgba(0,0,0,0.55)" }}>
-                            <Icon size={14} strokeWidth={2.25} className="text-white" />
-                          </div>
-                          <div className="relative z-10 p-4">
-                            <h3 className="font-display text-xl leading-none text-white">{panel.title}</h3>
-                            <p className="mt-2 text-xs font-semibold leading-relaxed text-white/80">{panel.text}</p>
-                            <p className="mt-2 text-sm font-bold text-white">{panel.year}</p>
-                          </div>
-                        </div>
-                      }
-                      back={
-                        <Link href="/lore"
-                          className="ink-frame relative flex h-full min-h-64 flex-col items-center justify-center gap-3 overflow-hidden p-4 text-center"
-                          style={{ background: "linear-gradient(145deg, rgba(17,19,28,1), rgba(5,6,8,1))" }}>
-                          <Icon size={28} strokeWidth={1.75} style={{ color: "var(--color-accent-cyan)" }} />
-                          <h3 className="font-display text-lg leading-tight text-white">{panel.title}</h3>
-                          <p className="text-[11px] font-bold uppercase tracking-widest" style={{ color: "var(--color-accent-violet)" }}>
-                            Read Full Chapter -&gt;
-                          </p>
-                        </Link>
-                      }
-                    />
+                    <img src={`/manga/${panel.image}.png`} alt={panel.title} className="absolute inset-0 h-full w-full object-cover" />
+                    <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.55) 38%, transparent 62%)" }} />
+                    <div className="absolute right-2 top-2 flex h-7 w-7 items-center justify-center rounded-full border"
+                      style={{ borderColor: "rgba(255,255,255,0.7)", background: "rgba(0,0,0,0.55)" }}>
+                      <Icon size={14} strokeWidth={2.25} className="text-white" />
+                    </div>
+                    <div className="relative z-10 p-4">
+                      <h3 className="font-display text-xl leading-none text-white">{panel.title}</h3>
+                      <p className="mt-2 text-xs font-semibold leading-relaxed text-white/80">{panel.text}</p>
+                      <p className="mt-2 text-sm font-bold text-white">{panel.year}</p>
+                    </div>
                   </motion.div>
                 );
               })}
@@ -415,74 +397,54 @@ export default function Home() {
           </div>
           <div className="grid gap-5 lg:grid-cols-3">
             {FEATURED_PROJECTS.map((project, index) => (
-              <motion.div key={project.title}
+              <motion.a key={project.title} href="/projects"
+                className="ink-frame group relative overflow-hidden rounded-lg p-5"
+                style={{ background: "var(--color-bg-surface)" }}
                 initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.08 }}>
-                <FlipCard
-                  className="h-full min-h-[420px]"
-                  front={
-                    <div className="ink-frame group relative h-full overflow-hidden rounded-lg p-5"
-                      style={{ background: "var(--color-bg-surface)" }}>
-                      <div className="absolute inset-x-0 top-0 h-28 opacity-80" style={{ background: project.gradient }} />
-                      <div className="relative mb-5 h-40 overflow-hidden rounded-md border-2"
-                        style={{ background: "var(--color-bg-surface)", borderColor: "var(--color-text-primary)" }}>
-                        <div className="absolute inset-x-0 top-0 flex h-6 items-center gap-1.5 border-b px-3"
-                          style={{ borderColor: "var(--color-border)", background: "rgba(5,6,8,0.6)" }}>
-                          <span className="h-2 w-2 rounded-full" style={{ background: "#ff5f56" }} />
-                          <span className="h-2 w-2 rounded-full" style={{ background: "#ffbd2e" }} />
-                          <span className="h-2 w-2 rounded-full" style={{ background: "#27c93f" }} />
-                        </div>
-                        <div className="absolute inset-0 top-6 opacity-40"
-                          style={{ backgroundImage: "linear-gradient(var(--color-border) 1px, transparent 1px), linear-gradient(90deg, var(--color-border) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
-                        <div className="absolute left-4 right-4 top-11 flex items-end gap-2">
-                          {Array.from({ length: 9 }).map((_, barIndex) => (
-                            <motion.span key={barIndex} className="flex-1 rounded-t"
-                              style={{ background: barIndex % 2 ? "var(--color-accent-cyan)" : "var(--color-accent-violet)" }}
-                              animate={{ height: [34, 78 - barIndex * 4, 42 + barIndex * 5] }}
-                              transition={{ duration: 2.4, repeat: Infinity, delay: barIndex * 0.08 }} />
-                          ))}
-                        </div>
-                        <div className="absolute bottom-4 left-4 rounded border px-2 py-1 text-[10px] font-bold uppercase tracking-widest"
-                          style={{ borderColor: "var(--color-accent-violet)", color: "var(--color-text-primary)", background: "rgba(5,6,8,0.75)" }}>
-                          Live Demo
-                        </div>
-                      </div>
-                      <h3 className="relative font-display text-2xl leading-tight" style={{ color: "var(--color-text-primary)" }}>{project.title}</h3>
-                      <p className="relative mt-2 text-sm" style={{ color: "var(--color-text-muted)" }}>{project.description}</p>
-                      <span className="absolute bottom-4 right-5 text-[10px] font-bold uppercase tracking-widest" style={{ color: "var(--color-accent-cyan)" }}>
-                        Flip for details
-                      </span>
-                    </div>
-                  }
-                  back={
-                    <div className="ink-frame relative flex h-full flex-col justify-between overflow-hidden rounded-lg p-6"
-                      style={{ background: "linear-gradient(145deg, rgba(17,19,28,1), rgba(5,6,8,1))" }}>
-                      <div>
-                        <h3 className="relative font-display text-2xl leading-tight" style={{ color: "var(--color-text-primary)" }}>{project.title}</h3>
-                        <div className="relative mt-4 flex flex-wrap gap-2">
-                          {project.tags.map((tag) => (
-                            <span key={tag} className="flex items-center gap-1.5 rounded border px-2 py-1 text-[11px]"
-                              style={{ borderColor: "var(--color-border)", color: "var(--color-text-muted)" }}>
-                              <Code2 size={11} strokeWidth={2} style={{ color: "var(--color-accent-violet)" }} />
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                      <Link href="/projects"
-                        className="relative mt-5 flex items-center justify-between border-t pt-4"
-                        style={{ borderColor: "var(--color-border)" }}>
-                        <span className="text-xs font-semibold tracking-widest" style={{ color: "var(--color-accent-violet)" }}>OPEN PROJECT WORLD</span>
-                        <span style={{ color: "var(--color-accent-violet)" }}>-&gt;</span>
-                      </Link>
-                    </div>
-                  }
-                />
-              </motion.div>
+                <div className="absolute inset-x-0 top-0 h-28 opacity-80" style={{ background: project.gradient }} />
+                <div className="relative mb-5 h-40 overflow-hidden rounded-md border-2"
+                  style={{ background: "var(--color-bg-surface)", borderColor: "var(--color-text-primary)" }}>
+                  <div className="absolute inset-x-0 top-0 flex h-6 items-center gap-1.5 border-b px-3"
+                    style={{ borderColor: "var(--color-border)", background: "rgba(5,6,8,0.6)" }}>
+                    <span className="h-2 w-2 rounded-full" style={{ background: "#ff5f56" }} />
+                    <span className="h-2 w-2 rounded-full" style={{ background: "#ffbd2e" }} />
+                    <span className="h-2 w-2 rounded-full" style={{ background: "#27c93f" }} />
+                  </div>
+                  <div className="absolute inset-0 top-6 opacity-40"
+                    style={{ backgroundImage: "linear-gradient(var(--color-border) 1px, transparent 1px), linear-gradient(90deg, var(--color-border) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
+                  <div className="absolute left-4 right-4 top-11 flex items-end gap-2">
+                    {Array.from({ length: 9 }).map((_, barIndex) => (
+                      <motion.span key={barIndex} className="flex-1 rounded-t"
+                        style={{ background: barIndex % 2 ? "var(--color-accent-cyan)" : "var(--color-accent-violet)" }}
+                        animate={{ height: [34, 78 - barIndex * 4, 42 + barIndex * 5] }}
+                        transition={{ duration: 2.4, repeat: Infinity, delay: barIndex * 0.08 }} />
+                    ))}
+                  </div>
+                  <div className="absolute bottom-4 left-4 rounded border px-2 py-1 text-[10px] font-bold uppercase tracking-widest"
+                    style={{ borderColor: "var(--color-accent-violet)", color: "var(--color-text-primary)", background: "rgba(5,6,8,0.75)" }}>
+                    Live Demo
+                  </div>
+                </div>
+                <h3 className="relative font-display text-2xl leading-tight" style={{ color: "var(--color-text-primary)" }}>{project.title}</h3>
+                <p className="relative mt-2 text-sm" style={{ color: "var(--color-text-muted)" }}>{project.description}</p>
+                <div className="relative mt-4 flex flex-wrap gap-2">
+                  {project.tags.map((tag) => (
+                    <span key={tag} className="flex items-center gap-1.5 rounded border px-2 py-1 text-[11px]"
+                      style={{ borderColor: "var(--color-border)", color: "var(--color-text-muted)" }}>
+                      <Code2 size={11} strokeWidth={2} style={{ color: "var(--color-accent-violet)" }} />
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <div className="relative mt-5 flex items-center justify-between border-t pt-4" style={{ borderColor: "var(--color-border)" }}>
+                  <span className="text-xs font-semibold tracking-widest" style={{ color: "var(--color-accent-violet)" }}>OPEN PROJECT WORLD</span>
+                  <span className="transition-transform group-hover:translate-x-1" style={{ color: "var(--color-accent-violet)" }}>-&gt;</span>
+                </div>
+              </motion.a>
             ))}
           </div>
         </section>
-
 
         <section className="grid gap-10 px-6 py-12 md:px-12 xl:grid-cols-[1.15fr_1fr]"
           style={{ borderTop: "1px solid var(--color-border)", background: "var(--color-bg-surface)" }}>
@@ -495,35 +457,19 @@ export default function Home() {
             </div>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {CERTIFICATIONS.map((cert, certIndex) => (
-                <motion.div key={cert.name}
+                <motion.div key={cert.name} className="ink-frame relative min-h-40 overflow-hidden rounded-lg p-5"
+                  style={{ background: "linear-gradient(145deg, rgba(17,19,28,1), rgba(12,15,25,1))" }}
                   initial={{ opacity: 0, y: 24, rotate: -3 }}
                   whileInView={{ opacity: 1, y: 0, rotate: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: certIndex * 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}>
-                  <FlipCard
-                    className="min-h-40 h-full"
-                    front={
-                      <div className="ink-frame relative h-full min-h-40 overflow-hidden rounded-lg p-5"
-                        style={{ background: "linear-gradient(145deg, rgba(17,19,28,1), rgba(12,15,25,1))" }}>
-                        <div className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full border-2"
-                          style={{ borderColor: cert.accent, background: `${cert.accent}1a` }}>
-                          <Award size={16} strokeWidth={2} style={{ color: cert.accent }} />
-                        </div>
-                        <h3 className="text-lg font-semibold" style={{ color: "var(--color-text-primary)" }}>{cert.name}</h3>
-                        <p className="mt-1 text-xs" style={{ color: "var(--color-text-muted)" }}>{cert.subtitle}</p>
-                        <p className="absolute bottom-5 left-5 font-display text-2xl" style={{ color: cert.accent }}>{cert.mark}</p>
-                      </div>
-                    }
-                    back={
-                      <div className="ink-frame relative flex h-full min-h-40 flex-col items-center justify-center gap-2 overflow-hidden rounded-lg p-5 text-center"
-                        style={{ background: `linear-gradient(145deg, ${cert.accent}26, rgba(5,6,8,1))` }}>
-                        <Award size={26} strokeWidth={1.75} style={{ color: cert.accent }} />
-                        <p className="text-[10px] font-bold uppercase tracking-widest" style={{ color: cert.accent }}>Verified Credential</p>
-                        <h3 className="font-display text-base leading-tight" style={{ color: "var(--color-text-primary)" }}>{cert.name}</h3>
-                        <p className="text-xs" style={{ color: "var(--color-text-muted)" }}>{cert.subtitle}</p>
-                      </div>
-                    }
-                  />
+                  <div className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full border-2"
+                    style={{ borderColor: cert.accent, background: `${cert.accent}1a` }}>
+                    <Award size={16} strokeWidth={2} style={{ color: cert.accent }} />
+                  </div>
+                  <h3 className="text-lg font-semibold" style={{ color: "var(--color-text-primary)" }}>{cert.name}</h3>
+                  <p className="mt-1 text-xs" style={{ color: "var(--color-text-muted)" }}>{cert.subtitle}</p>
+                  <p className="absolute bottom-5 left-5 font-display text-2xl" style={{ color: cert.accent }}>{cert.mark}</p>
                 </motion.div>
               ))}
             </div>
@@ -540,31 +486,17 @@ export default function Home() {
                 const Icon = stat.icon;
                 const color = index === 3 ? "#f7a928" : index === 2 ? "var(--color-accent-cyan)" : "var(--color-accent-violet)";
                 return (
-                  <motion.div key={stat.label}
+                  <motion.div key={stat.label} className="ink-frame rounded-lg p-6"
+                    style={{ background: "linear-gradient(145deg, rgba(17,19,28,1), rgba(5,6,8,1))" }}
                     initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.08 }}>
-                    <FlipCard
-                      className="h-full min-h-[112px]"
-                      front={
-                        <div className="ink-frame h-full rounded-lg p-6" style={{ background: "linear-gradient(145deg, rgba(17,19,28,1), rgba(5,6,8,1))" }}>
-                          <div className="mb-2 flex items-center justify-between">
-                            <p className="font-display text-4xl" style={{ color }}><CountUp value={stat.value} /></p>
-                            <motion.span initial={{ rotate: -45, scale: 0 }} whileInView={{ rotate: 0, scale: 1 }} viewport={{ once: true }}
-                              transition={{ delay: index * 0.08 + 0.3, type: "spring", stiffness: 200, damping: 12 }}>
-                              <Icon size={20} strokeWidth={1.75} style={{ color }} />
-                            </motion.span>
-                          </div>
-                          <p className="mt-1 text-xs font-bold uppercase tracking-widest" style={{ color: "var(--color-text-primary)" }}>{stat.label}</p>
-                        </div>
-                      }
-                      back={
-                        <div className="ink-frame flex h-full flex-col items-center justify-center gap-2 rounded-lg p-6 text-center"
-                          style={{ background: `linear-gradient(145deg, ${color}26, rgba(5,6,8,1))` }}>
-                          <Icon size={24} strokeWidth={1.75} style={{ color }} />
-                          <p className="text-xs font-bold uppercase tracking-widest" style={{ color: "var(--color-text-primary)" }}>{stat.label}</p>
-                          <p className="font-display text-3xl" style={{ color }}>{stat.value}</p>
-                        </div>
-                      }
-                    />
+                    <div className="mb-2 flex items-center justify-between">
+                      <p className="font-display text-4xl" style={{ color }}><CountUp value={stat.value} /></p>
+                      <motion.span initial={{ rotate: -45, scale: 0 }} whileInView={{ rotate: 0, scale: 1 }} viewport={{ once: true }}
+                        transition={{ delay: index * 0.08 + 0.3, type: "spring", stiffness: 200, damping: 12 }}>
+                        <Icon size={20} strokeWidth={1.75} style={{ color }} />
+                      </motion.span>
+                    </div>
+                    <p className="mt-1 text-xs font-bold uppercase tracking-widest" style={{ color: "var(--color-text-primary)" }}>{stat.label}</p>
                   </motion.div>
                 );
               })}

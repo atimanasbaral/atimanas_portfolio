@@ -11,7 +11,7 @@ export const profile = {
   github: "https://github.com/atimanasbaral",
   resumePath: "/resume.pdf",
   availability: "Open to Work",
-  avatarPath: "/images/profile-placeholder.svg",
+  avatarPath: "/avatar.png",
   summary:
     "Electrical & Electronics Engineering graduate who builds systems that turn raw financial data into actionable signals — from live NSE options mispricing detection to a Snowflake warehouse processing 5M+ transactions daily.",
   heroQuote: "Data is not just numbers. It is the blueprint of the future.",

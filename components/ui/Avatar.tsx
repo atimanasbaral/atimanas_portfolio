@@ -36,7 +36,7 @@ export default function Avatar({ src, alt, size = "lg" }: AvatarProps) {
           hovered && !reducedMotion ? "scale-105" : "scale-100"
         }`}
       >
-        <Image src={src} alt={alt} fill className="object-cover" sizes="64px" priority unoptimized />
+        <Image src={src} alt={alt} fill className="object-cover object-top" sizes="64px" priority unoptimized />
       </div>
     </div>
   );

@@ -3,6 +3,7 @@
 import { ReactLenis } from "lenis/react";
 import { useReducedMotion } from "@/lib/hooks/useReducedMotion";
 import CursorGlow from "@/components/effects/CursorGlow";
+import ScrollTriggerSync from "@/components/effects/ScrollTriggerSync";
 
 export default function AppProviders({ children }: { children: React.ReactNode }) {
   const reducedMotion = useReducedMotion();
@@ -16,6 +17,7 @@ export default function AppProviders({ children }: { children: React.ReactNode }
         syncTouch: false,
       }}
     >
+      <ScrollTriggerSync />
       <CursorGlow />
       {children}
     </ReactLenis>

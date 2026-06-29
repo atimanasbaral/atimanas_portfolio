@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { TOP_NAV_ITEMS } from "@/lib/data/navigation";
+import ThemeToggle from "@/components/ThemeToggle";
 
 export default function TopNav() {
   const pathname = usePathname();
@@ -30,7 +31,7 @@ export default function TopNav() {
         })}
       </nav>
       <p className="font-display text-xs tracking-[0.35em] text-text-faint lg:hidden">ATIMANAS</p>
-      <p className="hidden text-xs text-text-muted lg:block">Portfolio v1</p>
+      <div className="flex items-center gap-3"><p className="hidden text-xs text-text-muted lg:block">Portfolio v1</p><ThemeToggle compact /></div>
     </header>
   );
 }

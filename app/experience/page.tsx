@@ -293,8 +293,7 @@ export default function ExperiencePage() {
       <div className="flex justify-center gap-4 pb-16 flex-wrap">
         <Link
           href="/projects"
-          className="rounded-full px-6 py-3 text-sm font-medium"
-          className="btn-primary"
+          className="btn-primary rounded-full px-6 py-3 text-sm font-medium"
         >
           View My Projects
         </Link>
